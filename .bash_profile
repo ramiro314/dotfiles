@@ -37,12 +37,6 @@ function route_delete() {
   sudo route delete 10.0.0.0
 }
 
-# Route IRC traffic through one of my servers.
-# Use SOCKS5 settings 'localhost' and 6667 for server/port.
-function irc_proxy() {
-  ssh -vD 6667 geerlingguy@atl1.servercheck.in
-}
-
 # Syntax-highlight code for copying and pasting.
 # Requires highlight (`brew install highlight`).
 function pretty() {
@@ -83,16 +77,6 @@ if [ -f $brew_prefix/etc/bash_completion ]; then
   . $brew_prefix/etc/bash_completion
 fi
 
-# Use brew-installed PHP binaries.
-export PATH="$brew_prefix/opt/php56/bin:$PATH"
-
-# Use nvm.
-export NVM_DIR="$HOME/.nvm"
-. "$brew_prefix/opt/nvm/nvm.sh"
-
-# Vagrant configuration.
-# export VAGRANT_DEFAULT_PROVIDER='virtualbox'
-
 # Disable cowsay in Ansible.
 export ANSIBLE_NOCOWS=1
 
@@ -122,18 +106,3 @@ prod_command_trap () {
 }
 shopt -s extdebug
 trap prod_command_trap DEBUG
-
-function blt() {
-  if [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
-    GIT_ROOT=$(git rev-parse --show-cdup)
-  else
-    GIT_ROOT="."
-  fi
-
-  if [ -f "$GIT_ROOT/vendor/bin/blt" ]; then
-    $GIT_ROOT/vendor/bin/blt "$@"
-  else
-    echo "You must run this command from within a BLT-generated project repository."
-    exit 1
-  fi
-}

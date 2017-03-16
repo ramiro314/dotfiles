@@ -1,6 +1,6 @@
 [user]
-  name = Jeff Geerling
-  email = geerlingguy@mac.com
+  name = Ramiro Meares
+  email = ramiro.314@gmail.com
 [core]
   editor = vi
   excludesfile = ~/.gitignore
@@ -16,8 +16,6 @@
   helper = osxkeychain
 [push]
   default = simple
-[merge]
-  tool = kdiff3
 [difftool]
   prompt = false
 [alias]
